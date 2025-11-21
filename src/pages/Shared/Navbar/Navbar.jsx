@@ -30,11 +30,15 @@ const Navbar = () => {
         <NavLink>Pricing</NavLink>
       </li>
       <li>
-        <NavLink>Blog</NavLink>
+        <NavLink to={"/sendParcel"}>Send Parcel</NavLink>
       </li>
-      <li>
-        <NavLink>Contact</NavLink>
+    
+      {
+        user && <>   <li>
+        <NavLink to={"/dashboard/my-parcels"}>My Parcels</NavLink>
       </li>
+        </>
+      }
     </>
   );
   return (
@@ -75,15 +79,17 @@ const Navbar = () => {
         </div>
         <div className="navbar-end gap-2">
           {user ? (
-            <Link to={"/login"} className="btn btn-outline">
+            <button onClick={handleLogout} className="btn btn-outline">
+              Sign Out
+            </button>
+          ) : (
+            <Link to="/login" className="btn btn-outline">
               Login
             </Link>
-          ) : (
-            <a onClick={handleLogout} className="btn btn-outline">
-              Sign Out
-            </a>
           )}
-          <Link to={'/rider'} className="btn btn-outline ">Be a Rider</Link>
+          <Link to={"/rider"} className="btn btn-primary">
+            Be a Rider
+          </Link>
         </div>
       </div>
     </div>
